@@ -147,7 +147,7 @@ def is_email_unique(email):
     return not result
 # Rest of the
 #
-ALLOWED_IP_ADDRESSES = ["124.109.36.140","58.65.179.195","115.186.167.133"]
+#ALLOWED_IP_ADDRESSES = ["124.109.36.140","58.65.179.195","115.186.167.133"]
 def get_user_ip():
     data = json.load(urlopen("http://httpbin.org/ip"))
     return data["origin"]
@@ -168,12 +168,12 @@ def main():
     favicon_path = "/Users/apple/Desktop/kp_leads_attendance/attandance_project/KP favicon (1).png"  # Replace with the filename of your custom favicon
     st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
     st.title("Kp Leads Employee Attendance")
-    if not session.ip_checked:
-        user_ip = get_user_ip()
-    if user_ip not in ALLOWED_IP_ADDRESSES:
-        st.error("Access denied. Your IP address is not allowed.")
-        return
-    session.ip_checked = True
+    #if not session.ip_checked:
+        #user_ip = get_user_ip()
+    #if user_ip not in ALLOWED_IP_ADDRESSES:
+      #  st.error("Access denied. Your IP address is not allowed.")
+       # return
+    #session.ip_checked = True
 
     create_tables()
 
