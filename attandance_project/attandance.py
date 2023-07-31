@@ -129,11 +129,8 @@ def clean_attendance():
     conn = sqlite3.connect("attendance.db")
     cursor = conn.cursor()
 
-    # Calculate the next day's date
-    next_day = date.today() + timedelta(days=1)
-
-    # Delete attendance records for the next day
-    cursor.execute("DELETE FROM attendance WHERE date = ?", (next_day,))
+    # Delete all attendance records
+    cursor.execute("DELETE FROM attendance")
 
     conn.commit()
     conn.close()
@@ -147,7 +144,7 @@ def is_email_unique(email):
     return not result
 # Rest of the
 #
-#ALLOWED_IP_ADDRESSES = ["124.109.36.140","58.65.179.195","115.186.167.133"]
+ALLOWED_IP_ADDRESSES = ["124.109.36.140","58.65.179.195","115.186.167.133"]
 def get_user_ip():
     data = json.load(urlopen("http://httpbin.org/ip"))
     return data["origin"]
@@ -167,13 +164,13 @@ if 'authenticated' not in st.session_state:
 def main():
     #favicon_path = "KP favicon (1).png"  # Replace with the filename of your custom favicon
     #st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
-    st.title("Kp Leads Employee Attendance")
-    #if not session.ip_checked:
-        #user_ip = get_user_ip()
-    #if user_ip not in ALLOWED_IP_ADDRESSES:
-      #  st.error("Access denied. Your IP address is not allowed.")
-       # return
-    #session.ip_checked = True
+    """st.title("Kp Leads Employee Attendance")
+    if not session.ip_checked:
+        user_ip = get_user_ip()
+    if user_ip not in ALLOWED_IP_ADDRESSES:
+        st.error("Access denied. Your IP address is not allowed.")
+        return
+    session.ip_checked = True"""
 
     create_tables()
 
@@ -295,16 +292,22 @@ def main():
                 else:
                     st.error("Employee with the provided email does not exist.")
 
-
-
-
-
-        # For Admin and Team Lead, show attendance records for employees of respective departments.
+    if st.session_state.authenticated and st.session_state.designation == "Team Lead":
+        st.title("Team Lead Panel")
         if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
             department = st.selectbox("Select Department",
-                                      ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT", "Development", "HR"])
+                                          ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT", "Development", "HR"])
             df = get_all_attendance_by_department(department)
             st.dataframe(df)
+
+    if st.session_state.authenticated and st.session_state.designation == "Executive":
+        st.title("Team Lead Panel")
+        if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
+            department = st.selectbox("Select Department",
+                                          ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT", "Development", "HR"])
+            df = get_all_attendance_by_department(department)
+            st.dataframe(df)
+
 
 
 
