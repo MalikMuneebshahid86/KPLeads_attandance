@@ -183,15 +183,15 @@ def main():
         hide_signup = hide_signup[0] if hide_signup else "false"
         hide_signup = hide_signup.lower() == "true"
         st.session_state.hide_signup = hide_signup
-    logo_image = "KP favicon (1).png"
+    #logo_image = "KP favicon (1).png"
     # Authentication
-    col_container = st.container()
-    col_container.write("")
-    col1, col2, col3 = col_container.columns([1, 2, 1])
+    #col_container = st.container()
+    #col_container.write("")
+    #col1, col2, col3 = col_container.columns([1, 2, 1])
 
     # Display the image in the center column with size 300x300
-    col2.image(logo_image, width=200)
-    st.sidebar.title("Authentication")
+    #col2.image(logo_image, width=200)
+    #st.sidebar.title("Authentication")
 
     # Signup Page (Only show if signup is not hidden for admins)
     if not st.session_state.hide_signup and st.sidebar.checkbox("Sign Up"):
