@@ -164,8 +164,8 @@ if 'authenticated' not in st.session_state:
 def main():
     #favicon_path = "KP favicon (1).png"  # Replace with the filename of your custom favicon
     #st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
-    """st.title("Kp Leads Employee Attendance")
-    if not session.ip_checked:
+    st.title("Kp Leads Employee Attendance")
+    """if not session.ip_checked:
         user_ip = get_user_ip()
     if user_ip not in ALLOWED_IP_ADDRESSES:
         st.error("Access denied. Your IP address is not allowed.")
