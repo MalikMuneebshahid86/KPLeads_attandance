@@ -165,7 +165,7 @@ if 'authenticated' not in st.session_state:
     st.session_state.designation = ""
     st.session_state.hide_signup = False
 def main():
-    favicon_path = "/Users/apple/Desktop/kp_leads_attendance/attandance_project/KP favicon (1).png"  # Replace with the filename of your custom favicon
+    favicon_path = "KP favicon (1).png"  # Replace with the filename of your custom favicon
     st.set_page_config(page_title="KP Leads", page_icon=favicon_path)
     st.title("Kp Leads Employee Attendance")
     #if not session.ip_checked:
@@ -183,7 +183,7 @@ def main():
         hide_signup = hide_signup[0] if hide_signup else "false"
         hide_signup = hide_signup.lower() == "true"
         st.session_state.hide_signup = hide_signup
-    logo_image = "/Users/apple/Desktop/kp_leads_attendance/attandance_project/KP favicon (1).png"
+    logo_image = "KP favicon (1).png"
     # Authentication
     col_container = st.container()
     col_container.write("")
