@@ -291,6 +291,11 @@ def main():
                     password_placeholder.text_input("Password", value=password, type="password")
                 else:
                     st.error("Employee with the provided email does not exist.")
+        if st.session_state.designation in ["Admin", "Team Lead", "Executives"]:
+            department = st.selectbox("Select Department",
+                                      ["QA", "FE Live", "FE Closing", "Medicare", "MVA", "IT", "Development", "HR"])
+            df = get_all_attendance_by_department(department)
+            st.dataframe(df)
 
     if st.session_state.authenticated and st.session_state.designation == "Team Lead":
         st.title("Team Lead Panel")
